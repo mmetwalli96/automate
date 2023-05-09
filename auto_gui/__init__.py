@@ -1,0 +1,1 @@
+from auto_gui.auto_gui import auto
