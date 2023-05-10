@@ -1,6 +1,38 @@
 [
   {
-    "task": "move",
+    "task": "task 1",
+    "time": 2,
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "task": "task 2",
+    "time": 2,
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "task": "task 3",
+    "time": 2,
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "task": "task 4",
+    "time": 2,
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "task": "task 5",
     "time": 2,
     "position": {
       "x": 0,
