@@ -45,14 +45,14 @@ class auto():
         """
 
         # locate the mouse pointer
-        print("Press Ctrl-C to quit")
+        print("Press Ctrl-C to quit or q to quit")
         try:
             while True:
                 # Get and print the mouse coordinates.
                 x, y = pyautogui.position()
-                position_str = "X: " + str(x).rjust(4) + " Y: " + str(y).rjust(4)
-                print(position_str, end="")
-                print("\b" * len(position_str), end="", flush=True)
+                position_str = f"X: {x}, Y: {y}"
+                print(position_str, end="  \r", flush=True)
+
         except KeyboardInterrupt:
             print("\nDone")
             return None
@@ -71,7 +71,60 @@ class auto():
 
             # assign the tasks to the tasks attribute
             self.tasks = tasks
-            print(self.tasks)
+
             return None
+        
+    def move(self, x: int, y: int, time: float) -> None:
+        """
+        Move the mouse pointer
+        """
+
+        # raise TypeError if x or y is not an integer
+        if not isinstance(x, int):
+            raise TypeError("x must be an integer")
+        if not isinstance(y, int):
+            raise TypeError("y must be an integer")
+        
+        # raise TypeError if time is not a float
+        if not isinstance(time, float):
+            raise TypeError("time must be a float")
+        
+        # move the mouse pointer
+        pyautogui.moveTo(x, y, duration = time)
+
+        return None
+    
+    def click(self, position) -> None:
+        """
+        Click the mouse pointer
+        """
+
+        # click the mouse pointer
+        pyautogui.click(button = position)
+
+        return None
+    
+    def execute(self) -> None:
+        """
+        Execute the GUI tasks
+        """
+
+        # verify the tasks attribute is not None
+        if self.tasks is None:
+            raise ValueError("The tasks attribute cannot be None")
+        
+        # execute the tasks
+        for task in self.tasks:
+            if task["task"] == "move":
+                self.move(task["position"]["x"], task["position"]["y"], task["time"])
+            elif task["task"] == "click":
+                self.click(task["position"])
+            else:
+                raise ValueError("Invalid task")
+
+        return None
+
+
+
 
         

@@ -61,6 +61,9 @@ def main(argv) -> None:
         # load the json file
         automate.load()
 
+        # execute the GUI tasks
+        automate.execute()
+
 
 
 if __name__ == "__main__":
