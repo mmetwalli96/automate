@@ -24,7 +24,7 @@ def main(argv) -> None:
 
     # verify the argument is valid
     if len(argv) == 0:
-        raise ValueError("An argument must be passed to the program, check the help message for more information")
+        raise ValueError("An argument must be passed to the program, check the help message for more information -h, --help")
     if len(argv) > 2:
         raise ValueError("Only one argument can be passed to the program, check the help message for more information -h, --help")
     if argv[0] not in ("-h", "--help", "-p", "--path", "-l", "--locate"):
@@ -47,6 +47,10 @@ def main(argv) -> None:
     
     # load the json file
     if argv[0] in ("-p", "--path"):
+
+        # send error message if no path is provided
+        if len(argv) == 1:
+            raise ValueError("A path must be provided to the program, check the help message for more information -h, --help")
         
         # define the path to the json file containing the GUI tasks
         path = argv[1]
