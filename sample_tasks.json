@@ -10,5 +10,11 @@
   {
     "task": "click",
     "position": "left"
+  },
+  {
+    "task": "navigate",
+    "path": "~/Documents/Projects/",
+    "open": true,
+    "os": "win"
   }
 ]

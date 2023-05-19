@@ -1,4 +1,5 @@
 # import dependencies
+import os
 import json
 import pyautogui
 
@@ -74,7 +75,7 @@ class auto():
 
             return None
         
-    def move(self, x: int, y: int, time: float) -> None:
+    def move(self, x: int, y: int, time: float ) -> None:
         """
         Move the mouse pointer
         """
@@ -104,6 +105,55 @@ class auto():
 
         return None
     
+    def navigate(self, path: str, open: bool, operating_system: str) -> None:
+        """
+        Navigate to a path
+        """
+        # verify the path is a string
+        if not isinstance(path, str):
+            raise TypeError("The path must be a string")
+        
+        # verify the open is a boolean
+        if not isinstance(open, bool):
+            raise TypeError("The open must be a boolean")
+        
+        # verify the os is a string
+        if not isinstance(operating_system, str): 
+            raise TypeError("The os must be a string")
+        
+        # navigate to the path
+        if operating_system == "mac":
+            if open:
+                try:
+                    cmd = f"open {path}"
+                    os.system(cmd)
+                except Exception as e:
+                    raise e
+            else:
+                try:
+                    cmd = f"cd {path}"
+                    os.system(cmd)
+                except Exception as e:
+                    raise e
+                
+        elif operating_system == "win":
+            if open:
+                try:
+                    cmd = f"explorer {path}"
+                    os.system(cmd)
+                except Exception as e:
+                    raise e
+            else:
+                try:
+                    cmd = f"cd {path}"
+                    os.system(cmd)
+                except Exception as e:
+                    raise e
+        else:
+            raise ValueError("The os must be either mac or win. Other operating systems are not supported")
+
+        return None
+    
     def execute(self) -> None:
         """
         Execute the GUI tasks
@@ -119,8 +169,10 @@ class auto():
                 self.move(task["position"]["x"], task["position"]["y"], task["time"])
             elif task["task"] == "click":
                 self.click(task["position"])
+            elif task["task"] == "navigate":
+                self.navigate(task["path"], task["open"], task["os"])
             else:
-                raise ValueError("Invalid task")
+                raise ValueError(f"Invalid task {task['task']}, review sample_taks.json for how you constrcut the tasks")
 
         return None
 
