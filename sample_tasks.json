@@ -1,7 +1,7 @@
 [
   {
     "task": "move",
-    "time": 2,
+    "time": 2.0,
     "position": {
       "x": 0,
       "y": 0
