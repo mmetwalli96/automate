@@ -16,5 +16,9 @@
     "path": "~/Documents/Projects/",
     "open": true,
     "os": "win"
+  },
+  {
+    "taks": "sleep",
+    "time": 2.0
   }
 ]

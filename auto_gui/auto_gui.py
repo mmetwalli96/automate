@@ -1,6 +1,7 @@
 # import dependencies
 import os
 import json
+import time
 import pyautogui
 
 class auto():
@@ -36,6 +37,20 @@ class auto():
                 raise TypeError("The path must be a json file")
             
         self.path = path
+
+        return None
+    
+    def sleep(self, time: float) -> None:
+        """
+        Sleep for a given time
+        """
+
+        # raise TypeError if time is not a float
+        if not isinstance(time, float):
+            raise TypeError("time must be a float")
+        
+        # sleep for the given time
+        time.sleep(time)
 
         return None
         
@@ -171,6 +186,8 @@ class auto():
                 self.click(task["position"])
             elif task["task"] == "navigate":
                 self.navigate(task["path"], task["open"], task["os"])
+            elif task["task"] == "sleep":
+                self.sleep(task["time"])
             else:
                 raise ValueError(f"Invalid task {task['task']}, review sample_taks.json for how you constrcut the tasks")
 
