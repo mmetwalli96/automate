@@ -161,3 +161,6 @@ cython_debug/
 
 # tasks.json and task.json
 task*.json
+
+# .DS_tore
+.DS_Store
